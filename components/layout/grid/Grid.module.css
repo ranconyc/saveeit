@@ -1,0 +1,9 @@
+/* grid */
+.gridContainer {
+  display: grid;
+  align-items: start;
+  margin-top: 82px;
+}
+.col {
+  display: grid;
+}

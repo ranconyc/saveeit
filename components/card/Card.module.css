@@ -1,0 +1,31 @@
+/* card */
+
+.card {
+  position: relative;
+  overflow: hidden;
+}
+
+.card:hover {
+  cursor: pointer;
+}
+
+.overly {
+  position: absolute;
+  inset: 0;
+  background: #16161662;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: 0.5s;
+}
+
+.overly h3 {
+  color: #fff;
+  font-size: 2rem;
+  text-shadow: 3px 3px 3px rgba(0, 0, 0, 0.05);
+}
+
+.card:hover .overly {
+  opacity: 1;
+}
