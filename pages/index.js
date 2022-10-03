@@ -1,9 +1,8 @@
 import Head from 'next/head';
-import styles from '../styles/Home.module.css';
 import { useState } from 'react';
 import Header from '../components/layout/header/Header';
 import Grid from '../components/layout/grid/Grid';
-import { itemsArray, moreItems } from './data';
+import { itemsArray, moreItems } from '../data';
 
 function sliceIntoChunks(arr, chunkSize) {
   const res = [];
