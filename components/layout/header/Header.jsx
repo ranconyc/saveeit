@@ -1,18 +1,28 @@
 import { useEffect, useState } from 'react';
 import Input from '../../input/Input';
 import { MdDarkMode, MdLightMode } from 'react-icons/md';
-
-const Header = ({
-  numOfCol,
-  setGap,
-  setNumOfCol,
-  gap,
-  isDarkMode,
-  setIsDarkMode,
+import {
   handleColumnsChange,
-}) => {
+  sliceIntoChunks,
+  useAppContext,
+} from '../../../context/AppContext';
+import { itemsArray } from '../../../data/data';
+
+const Header = () => {
   const [prevSt, setPrevSt] = useState(0);
   const [scrolled, setScrolled] = useState(false);
+  const [{ columns, gap, isDarkMode }, dispatch] = useAppContext();
+
+  const rechunkItems = (col) =>
+    dispatch({
+      type: 'SET_ITEMS',
+      payload: sliceIntoChunks(itemsArray, Math.ceil(itemsArray.length / col)),
+    });
+
+  const handleColumnsChange = (e) => {
+    dispatch({ type: 'SET_COLUMNS', payload: e.target.value });
+    rechunkItems(e.target.value);
+  };
 
   useEffect(() => {
     const handleScroll = (e) => {
@@ -40,7 +50,7 @@ const Header = ({
           type="range"
           min="1"
           max="6"
-          value={numOfCol}
+          value={columns}
           onChange={handleColumnsChange}
         />
         <Input
@@ -50,11 +60,13 @@ const Header = ({
           step=".5"
           max="1.5"
           value={gap}
-          onChange={(e) => setGap(e.target.value)}
+          onChange={(e) =>
+            dispatch({ type: 'SET_GAP', payload: e.target.value })
+          }
         />
         <div
           className="mode-container"
-          onClick={() => setIsDarkMode(!isDarkMode)}
+          onClick={(e) => dispatch({ type: 'TOGGLE_DARK_MODE' })}
         >
           {isDarkMode ? <MdDarkMode /> : <MdLightMode />}
         </div>

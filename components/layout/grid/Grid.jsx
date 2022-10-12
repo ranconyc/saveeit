@@ -1,15 +1,17 @@
+import { useAppContext } from '../../../context/AppContext';
 import Card from '../../card/Card';
 import styles from './Grid.module.css';
 
-const Grid = ({ items, gap, numOfCol }) => {
-  console.log(items);
+const Grid = () => {
+  const [{ items, columns, gap }] = useAppContext();
+
   return (
     <div
       className={styles.gridContainer}
       style={{
         padding: `${gap * 3}vw`,
         gap: `${gap * 3}vw`,
-        gridTemplateColumns: `repeat(${numOfCol}, 1fr)`,
+        gridTemplateColumns: `repeat(${columns}, 1fr)`,
       }}
     >
       {items.map((chunk, colIndex) => {
@@ -26,7 +28,7 @@ const Grid = ({ items, gap, numOfCol }) => {
                 cardIndex={index}
                 colIndex={colIndex}
                 numOfChunks={chunk.length}
-                numOfCol={numOfCol}
+                columns={columns}
               />
             ))}
           </div>

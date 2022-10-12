@@ -1,7 +1,12 @@
-import '../styles/globals.css'
+import { AppContextProvider } from '../context/AppContext';
+import '../styles/globals.css';
 
 function MyApp({ Component, pageProps }) {
-  return <Component {...pageProps} />
+  return (
+    <AppContextProvider value={pageProps.itemsArray}>
+      <Component {...pageProps} />
+    </AppContextProvider>
+  );
 }
 
-export default MyApp
+export default MyApp;

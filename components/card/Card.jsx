@@ -6,15 +6,15 @@ const Card = ({
   cardIndex,
   colIndex,
   numOfChunks,
-  numOfCol,
+  columns,
 }) => {
   const action = () => {
     const result = `${
       cardIndex === 0
         ? cardIndex + 1 + colIndex
         : cardIndex > 1
-        ? cardIndex + colIndex + (cardIndex * numOfCol - cardIndex + 1)
-        : cardIndex + colIndex + cardIndex * numOfCol
+        ? cardIndex + colIndex + (cardIndex * columns - cardIndex + 1)
+        : cardIndex + colIndex + cardIndex * columns
     }`;
 
     return result;
