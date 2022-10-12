@@ -5,14 +5,14 @@ import Grid from '../components/layout/grid/Grid';
 import { itemsArray, moreItems } from '../data/data';
 import { useAppContext } from '../context/AppContext';
 
-export async function getServerSideProps() {
-  const { itemsArray } = await fetch('http://localhost:3000/api/images').then(
-    (res) => res.json()
-  );
-  console.log('itemssss', itemsArray);
+// export async function getServerSideProps({ req, res }) {
+//   const origin = req.headers.host;
+//   const { itemsArray } = await fetch(`https://${origin}/api/images`).then(
+//     (res) => res.json()
+//   );
 
-  return { props: { itemsArray } };
-}
+//   return { props: { itemsArray } };
+// }
 
 export default function Home() {
   const [{ isDarkMode }] = useAppContext();

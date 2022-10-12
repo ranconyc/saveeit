@@ -28,7 +28,6 @@ const Card = ({
         id={url}
         onClick={(e) => {
           navigator.clipboard.writeText(e.target.id);
-          navigator.clipboard.readText().then((e) => console.log('cb', e));
         }}
       >
         <h3>COPY</h3>

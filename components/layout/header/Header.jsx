@@ -25,6 +25,9 @@ const Header = () => {
   };
 
   useEffect(() => {
+    document.documentElement.scrollTop = 0;
+  }, []);
+  useEffect(() => {
     const handleScroll = (e) => {
       var st = window.pageYOffset || document.documentElement.scrollTop;
       console.log('scroll direction>', st > prevSt ? 'down' : 'up');
@@ -32,6 +35,7 @@ const Header = () => {
       st > prevSt ? setScrolled(false) : setScrolled(true);
       setPrevSt(st <= 0 ? 0 : st); // For Mobile or negative scrolling
     };
+
     document.addEventListener('scroll', handleScroll, false);
     return () => document.removeEventListener('scroll', handleScroll);
   }, [prevSt]);
@@ -39,8 +43,7 @@ const Header = () => {
   return (
     <header
       style={{
-        position: scrolled && 'fixed',
-        // top: scrolled ? 0 : 'auto',
+        position: scrolled ? 'fixed' : 'inline-block',
       }}
     >
       <h1>LOOOGO</h1>
